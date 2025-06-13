@@ -4,6 +4,7 @@ import dev.java10x.CadastroDeNinjas.Ninjas.NinjaModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MissoesService {
@@ -15,5 +16,10 @@ public class MissoesService {
 
     public List<MissoesModel> listarMissoes(){
         return missoesRepository.findAll();
+    }
+
+    public MissoesModel listarMissoesPorId(Long id){
+        Optional<MissoesModel> missoesPorId = missoesRepository.findById(id);
+        return missoesPorId.orElse(null);
     }
 }
