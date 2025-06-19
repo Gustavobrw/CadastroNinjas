@@ -26,7 +26,7 @@ public class MissoesController {
 
     //Post -- Mandar uma requisição para criar as missoes
     @PostMapping("/criar")
-    public MissoesModel criarMissao(@RequestBody MissoesModel missao){
+    public MissoesModel criarMissao (@RequestBody MissoesModel missao){
         return missoesService.criarMissao(missao);
     }
 
@@ -37,8 +37,8 @@ public class MissoesController {
     }
 
     //Delete -- Mandar uma requisição para deletar as missoes
-    @DeleteMapping("/delete")
-    public String deletarMissao(){
-        return "Missao deletada com sucesso";
+    @DeleteMapping("/deletar/{id}")
+    public void deletarMissao(@PathVariable Long id){
+        missoesService.deletarMissao(id);
     }
 }
