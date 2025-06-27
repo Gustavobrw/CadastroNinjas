@@ -9,7 +9,7 @@ import java.util.Optional;
 @Service
 public class MissoesService {
     private MissoesRepository missoesRepository;
-
+    MissoesMapper missoesMapper = new MissoesMapper();
     public MissoesService(MissoesRepository missoesRepository) {
         this.missoesRepository = missoesRepository;
     }
@@ -23,8 +23,10 @@ public class MissoesService {
         return missoesPorId.orElse(null);
     }
 
-    public MissoesModel criarMissao(MissoesModel missao){
-        return missoesRepository.save(missao);
+    public MissoesDTO criarMissao(MissoesDTO missaoDTO){
+        MissoesModel missao = missoesMapper.map(missaoDTO);
+        missao = missoesRepository.save(missao);
+        return missoesMapper.map(missao);
     }
 
     public void deletarMissao(Long id){
