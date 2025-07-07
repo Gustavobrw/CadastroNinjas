@@ -1,0 +1,127 @@
+<!
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Adicionar Novo Ninja</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            justify-content: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #219150;
+        }
+
+        .mensagem {
+            background-color: #eafaf1;
+            border: 1px solid #2ecc71;
+            color: #2ecc71;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        a {
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #2980b9;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+
+</head>
+<body>
+<h1>Adicionar Novo Ninja</h1>
+<div>
+    <div th:if="${mensagem}" class="mensagem" th:text="${mensagem}"></div>
+    <form th:action="@{/ninjas/ui/salvar}" th:object="${ninja}" method="post">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" th:field="*{nome}" required/>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" required/>
+
+        <label for="imgUrl">Url da Imagem:</label>
+        <input type="text" id="imgUrl" th:field="*{imgUrl}" required/>
+
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" th:field="*{idade}" required/>
+
+        <label for="rank">Rank:</label>
+        <input type="text" id="rank" th:field="*{rank}" required/>
+        <button type="submit"> Cadastrar Ninja</button>
+    </form>
+    <a th:href="@{/ninjas/ui/listar}"> Voltar para a lista de ninjas</a>
+</div>
+</body>
+</html>
